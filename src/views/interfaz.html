@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../public/css/interfaz.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
+  <div class="container">
+    <!-- SIDEBAR (Barra Lateral) -->
+    <div class="sidebar" id="sidebar">
+      <div class="logo-container">
+          <div class="logo" id="logo"></div>
+          <span class="title">JOBLINK</span>
+      </div>
+      <button id="create-job-btn" class="btn btn-primary">
+        <i class="fas fa-plus"></i> Crear oferta
+      </button>
+      <a href="#" class="nav-item">
+          <i>📨</i><span>Mensajes</span>
+      </a>
+      <a href="#" class="nav-item">
+          <i>⭐</i><span>Favoritos</span>
+      </a>
+      <a href="#" class="nav-item">
+          <i>✉️</i><span>Notificaciones</span>
+      </a>
+      <a href="#" class="nav-item">
+          <i>⚠️</i><span>Estafas</span>
+      </a>
+    </div>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="content">
+      <!-- NAVBAR (Barra de Navegación) -->
+      <nav class="navbar">
+        <div class="navbar-left">
+            <div class="search-box">
+                <img src="../public/images/search.png" alt="Buscar" />
+                <input type="text" placeholder="Búsqueda" />
+            </div>
+        </div>
+        <div class="navbar-center">
+            <!-- Menú de navegación central -->
+            <ul>
+                <li>
+                    <a href="#" class="active-link">
+                        <img src="../public/images/jobs.png" alt="Empleos" />
+                        <span>Empleos</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="../public/images/message.png" alt="Mensajes" />
+                        <span>Mensajes</span>
+                    </a>
+                </li>
+                <li id="notifications-toggle">
+                    <a href="#">
+                        <img src="../public/images/notification.png" alt="Notificaciones">
+                        <span>Notificaciones</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="nav-profile">
+            <!-- Elimina onclick de la etiqueta img -->
+            <img src="../public/images/Secciones.jpeg" class="nav-profile-img" alt="Perfil" />
+            <div class="profile-dropdown" id="menuPerfil">
+                <div class="radio-btn" onclick="toggleDarkMode()">
+                    <div class="radio-inner"></div>
+                </div>
+                <a href="perfil.html"><i class='bx bxs-user'></i> Mi Perfil</a>
+                <a href="/configuracion"><i class='bx bxs-cog'></i> Configuración</a>
+                <a href="#" id="logoutBtn"><i class='bx bxs-log-out'></i> Cerrar Sesión</a>
+            </div>
+        </div>
+      </nav>
+
+      <!-- SECCIÓN DE OFERTAS DE EMPLEO -->
+      <div class="job-offers-section">
+        <!-- Contenedor de tarjetas de empleo -->
+        <div id="job-cards-container" class="job-cards-grid">
+          <!-- Se inyectarán las tarjetas mediante JavaScript -->
+        </div>
+
+        <!-- Modal de Oferta de Empleo -->
+        <div id="job-modal" class="modal">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h2 id="modal-title">Crear oferta de trabajo</h2>
+              <button id="close-modal-btn" class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+              <div id="job-form-container">
+                <form id="job-offer-form">
+                  <div class="form-group">
+                    <label for="job-title">Título del empleo</label>
+                    <input type="text" id="job-title" name="title" required />
+                  </div>
+                  <div class="form-group">
+                    <label for="job-description">Descripción</label>
+                    <textarea id="job-description" name="description" rows="3" required></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label for="job-requirements">Requisitos</label>
+                    <textarea id="job-requirements" name="requirements" rows="3" required></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label for="job-skills">Habilidades</label>
+                    <div class="skills-input-container">
+                      <input type="text" id="job-skills-input" placeholder="Añadir una habilidad" />
+                      <button type="button" id="add-skill-btn" class="btn btn-secondary">Añadir</button>
+                    </div>
+                    <div id="skills-container" class="skills-container">
+                      <!-- Se agregarán las skills -->
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="job-salary">Salario</label>
+                    <input type="text" id="job-salary" name="salary" required />
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label for="job-contract-type">Tipo de contrato</label>
+                      <select id="job-contract-type" name="contractType">
+                        <option value="Full-time">Tiempo completo</option>
+                        <option value="Part-time">Medio tiempo</option>
+                        <option value="Contract">Contrato</option>
+                        <option value="Freelance">Freelance</option>
+                        <option value="Internship">Prácticas</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="job-modality">Modalidad</label>
+                      <select id="job-modality" name="modality">
+                        <option value="On-site">Presencial</option>
+                        <option value="Remote">Remoto</option>
+                        <option value="Hybrid">Híbrido</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="job-status">Estado</label>
+                      <select id="job-status" name="status">
+                        <option value="Active">Activo</option>
+                        <option value="Closed">Cerrado</option>
+                        <option value="Draft">Borrador</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label>Logo de la empresa</label>
+                    <div class="logo-upload-container">
+                      <div id="logo-preview-container" class="logo-preview-container">
+                        <img id="logo-preview" src="placeholder.svg" alt="Logo de la empresa" />
+                      </div>
+                      <button type="button" id="upload-logo-btn" class="btn btn-outline">
+                        <i class="fas fa-upload"></i> Subir logo
+                      </button>
+                    </div>
+                    <input type="file" id="logo-file-input" accept="image/*" style="display: none;" />
+                  </div>
+                  <div class="form-actions">
+                    <button type="button" id="cancel-form-btn" class="btn btn-outline">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Publicar oferta</button>
+                  </div>
+                </form>
+              </div>
+              <div id="job-details-container" style="display: none;">
+                <!-- Detalles del empleo se inyectarán aquí -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal para subir logo -->
+        <div id="upload-modal" class="modal">
+          <div class="modal-content upload-modal-content">
+            <div class="modal-header">
+              <h2>Subir logo de la empresa</h2>
+              <button id="close-upload-modal-btn" class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+              <div id="upload-preview-container" class="upload-preview-container">
+                <div id="upload-dropzone" class="upload-dropzone">
+                  <i class="fas fa-upload"></i>
+                  <p>Arrastra y suelta un archivo aquí o haz clic para buscar</p>
+                  <p class="upload-hint">JPG, PNG o SVG (máx 2MB)</p>
+                </div>
+                <div id="preview-image-container" class="preview-image-container" style="display: none;">
+                  <img id="preview-image" src="placeholder.svg" alt="Vista previa" />
+                  <button id="remove-preview-btn" class="btn btn-icon btn-danger">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </div>
+              <div id="upload-progress-container" class="upload-progress-container" style="display: none;">
+                <div class="progress-bar-container">
+                  <div id="upload-progress-bar" class="progress-bar"></div>
+                </div>
+                <p id="upload-progress-text" class="upload-progress-text">Subiendo... 0%</p>
+              </div>
+              <div class="upload-actions">
+                <button id="cancel-upload-btn" class="btn btn-outline">Cancelar</button>
+                <button id="confirm-upload-btn" class="btn btn-primary">Subir</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Fin job-offers-section -->
+    </main>
+  </div>
+
+  <!-- Placeholder SVG para imágenes vacías -->
+  <svg id="placeholder-svg" style="display: none;" width="80" height="80" xmlns="http://www.w3.org/2000/svg">
+    <rect width="100%" height="100%" fill="#f0f0f0" />
+    <text x="50%" y="50%" font-family="Arial" font-size="14" fill="#888" text-anchor="middle" dominant-baseline="middle">Logo</text>
+  </svg>
+
+  <script src="../public/js/interfaz.js"></script>
+</body>
+</html>

@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="../public/images/logo.jpg" />
+    <title>JobLink</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="../public/css/perfil.css" />
+</head>
+<body>
+    <!-- Barra de navegación principal -->
+    <nav class="navbar">
+        <div class="navbar-left">
+            <!-- Logo y caja de búsqueda -->
+            <a href="./interfaz.html" class="logo">
+                <img src="../public/images/logo.jpg" alt="Logo" />
+            </a>
+            <div class="search-box">
+                <img src="../public/images/search.png" alt="Buscar" />
+                <input type="text" placeholder="Búsqueda" />
+            </div>
+        </div>
+        <div class="navbar-center">
+            <!-- Menú de navegación central -->
+            <ul>
+                <li>
+                    <a href="#" class="active-link">
+                        <img src="../public/images/jobs.png" alt="Empleos" />
+                        <span>Empleos</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="../public/images/message.png" alt="Mensajes" />
+                        <span>Mensajes</span>
+                    </a>
+                </li>
+                <li id="notifications-toggle">
+                    <a href="#">
+                        <img src="../public/images/notification.png" alt="Notificaciones">
+                        <span>Notificaciones</span>
+                    </a>
+                    
+                    <!-- Panel de Notificaciones -->
+                    <div class="notifications-panel" id="notificationsPanel">
+                        <div class="notifications-header">
+                            <h2>Notificaciones</h2>
+                        </div>
+                        
+                        <div class="tabs">
+                            <button class="tab-btn active" data-tab="todas">Todas</button>
+                            <button class="tab-btn" data-tab="no-leidas">No leídas</button>
+                        </div>
+                        
+                        <div class="notifications-content" id="todas">
+                            <div class="notifications-list">
+                                <!-- Las notificaciones se cargarán aquí dinámicamente -->
+                            </div>
+                            <button class="ver-todo">Ver todo</button>
+                        </div>
+                        
+                        <div class="notifications-content" id="no-leidas" style="display: none;">
+                            <div class="notifications-list">
+                                <!-- Las notificaciones no leídas se cargarán aquí -->
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="nav-profile">
+            <img src="../public/images/Secciones.jpeg" class="nav-profile-img" alt="Perfil" onclick="profileDropdown()"/>
+            <div class="profile-dropdown" id="menuPerfil">
+                <div class="radio-btn" onclick="toggleDarkMode()">
+                    <div class="radio-inner"></div>
+                </div>
+                <a href=".perfil.html"><i class='bx bxs-user'></i> Mi Perfil</a>
+                <a href="/configuracion"><i class='bx bxs-cog'></i> Configuración</a>
+                <a href="#" id="logoutBtn"><i class='bx bxs-log-out'></i> Cerrar Sesión</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenedor principal -->
+    <div class="container">
+        <!-- Sección principal del perfil -->
+        <div class="profile-main">
+            <!-- Encabezado del perfil con banner y botones -->
+            <div class="profile-container">
+                <div class="profile-container-inner">
+                    <div class="cover-photo" id="coverPhoto">
+                        <button class="camera-icon" onclick="openPopup('cover')">📷</button>
+</div>
+  <div class="profile-section">
+    <div class="profile-pic" onclick="openPopup('profile')">
+        <img id="profile-img" src="../public/images/Secciones.jpeg" alt="Profile Picture">
+    </div>
+    <button class="edit-pencil" onclick="toggleEditPopup()">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="15" height="15">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4H6a2 2 0 00-2 2v12a2 2 2 0 002 2h12a2 2 0 002-2v-5M18.5 2.5a2.121 2.121 0 113 3L12 15l-4 1 1-4 9.5-9.5z" />
+          </svg>
+    </button>
+    <h1 class="profile-name">Olvin Miguelp</h1>
+    <p class="profile-headline">Programador</p>
+      
+      <!-- Intereses del perfil -->
+      
+        <div class="interest-section">
+            <button id="addInterestBtn" class="add-interest">Añadir interés</button>
+            <div id="interestTags"></div>
+        </div>
+    
+        <div id="modal" class="modalo">
+            <div class="modal-contento">
+                <h2>Añadir o eliminar intereses</h2>
+                <input type="text" id="newInterest" placeholder="Nuevo interés">
+                <button id="saveInterest">Guardar</button>
+                <div id="currentInterests"></div>
+            </div>
+        </div>
+  </div>
+                    <div class="profile-btn">
+                        <a href="#" class="primary-btn">
+                            <img src="../public/images/connect.png" alt="Conectar" />Agregar
+                        </a>
+                        <a href="#">
+                            <img src="../public/images/chat.png" alt="Chat" />Enviar mensaje
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Descripciones del perfil -->
+            <div class="profile-description">
+                <div class="card">
+                    <div class="about-section">
+                        <div class="about-content" id="aboutContent">
+                            <p class="about-text" id="aboutText">Algo sobre mi</p>
+                            <button class="edit-btn" onclick="showEdit()">    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="15" height="15">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4H6a2 2 0 00-2 2v12a2 2 2 0 002 2h12a2 2 0 002-2v-5M18.5 2.5a2.121 2.121 0 113 3L12 15l-4 1 1-4 9.5-9.5z" />
+                              </svg></button>
+                        </div>
+                        <div class="edit-container" id="editContainer">
+                            <textarea id="aboutTextarea"></textarea>
+                            <div class="buttons-container">
+                                <button class="button button-secondary" onclick="cancelEdit()">Cancelar</button>
+                                <button class="button button-primary" onclick="saveEdit()">Guardar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+           <!-- Formulario de Experiencia -->
+<form class="experienceForm">
+    <h2 class="section-title">Experiencia</h2>
+    <div class="profile-desc-row">  
+        <div id="experienceSectionDisplay"></div>
+    </div>
+</form>
+
+<!-- Formulario de Educación -->
+<form class="educationForm">
+    <h2 class="section-title">Educación</h2>
+    <div class="profile-desc-row">
+        <div id="educationSectionDisplay"></div>
+    </div>
+</form>
+
+<!-- Formulario de Habilidades -->
+<form class="skillsForm">
+    <h2 class="section-title">Habilidades</h2>
+    <div id="skillsSectionDisplay"></div>
+</form>
+
+<!-- Formulario de Idiomas -->
+<form class="languagesForm">
+    <h2 class="section-title">Idiomas</h2>
+    <div id="languagesSectionDisplay"></div>
+</form>
+
+        <!-- Barra lateral con anuncios y sugerencias -->
+        <div class="profile-sidebar">
+            <div class="sidebar-people">
+                <h3>xxxxxxx</h3>
+                <div class="sidebar-people-row">
+                    <div class="sidebar-ad">
+                        <p>Otras redes</p>
+                        <div>
+                            <img src="../public/images/Secciones.jpeg" alt="Anuncio" />
+                        </div>
+                        <a href="#" class="ad-link">Más información</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        <!-- Botón para abrir el popup de edición -->
+
+        <!-- Popup de edición -->
+        <div id="editPopup" class="popup">
+            <div class="popup-content">
+                <div class="card">
+                    <div class="card-header">
+                        <h1 class="card-title">Editar información del perfil</h1>
+                    </div>
+                 <!-- Nueva sección para editar nombre y titular -->
+                <div class="section">
+                    <h2 class="section-title">Información básica</h2>
+                    <div class="input-container">
+                        <input type="text" id="profileNameInput" placeholder="Nombre">
+                        <input type="text" id="profileHeadlineInput" placeholder="Titular">
+                    </div>
+                </div>
+                </div>
+                    <div class="card-content">
+                        <!-- Sección de Experiencia -->
+                        <div class="section" id="experienceSection">
+                            <div class="section-header">
+                                <h2 class="section-title">Experiencia</h2>
+                                <button class="button button-outline" onclick="addExperience()">
+                                    Agregar Experiencia
+                                </button>
+                            </div>
+                            <div id="experienceEntries"></div>
+                        </div>
+    
+                        <!-- Sección de Educación -->
+                        <div class="section" id="educationSection">
+                            <div class="section-header">
+                                <h2 class="section-title">Educación</h2>
+                                <button class="button button-outline" onclick="addEducation()">
+                                    Agregar Educación
+                                </button>
+                            </div>
+                            <div id="educationEntries"></div>
+                        </div>
+    
+                        <!-- Sección de Habilidades -->
+                        <div class="section">
+                            <div class="section-header">
+                                <h2 class="section-title">Habilidades</h2>
+                            </div>
+                            <div class="skills-container" id="skillsContainer"></div>
+                            <div class="input-container">
+                                <div class="input-row">
+                                    <input type="text" id="skillInput" placeholder="Agregar nueva habilidad">
+                                    <button class="button" onclick="addSkill()">Agregar</button>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <!-- Sección de Idiomas -->
+                        <div class="section">
+                            <div class="section-header">
+                                <h2 class="section-title">Idiomas</h2>
+                            </div>
+                            <div class="languages-container" id="languagesContainer"></div>
+                            <div class="input-container">
+                                <div class="input-row">
+                                    <input type="text" id="languageInput" placeholder="Agregar nuevo idioma">
+                                    <button class="button" onclick="addLanguage()">Agregar</button>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <!-- Botones de acción -->
+                        <div class="buttons-container">
+                            <button class="button button-outline" onclick="closeEditPopup()">Cerrar</button>
+                            <button class="button button-primary" onclick="saveEditPopup()">Guardar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+            <!-- Image Upload Popup -->
+    <div class="popup" id="popup">
+        <div class="popup-content">
+            <h3>Sube una imagen</h3>
+            <p id="image-type">Selecciona una imagen para actualizar.</p>
+            <input type="file" id="fileInput" accept="image/*">
+            <div class="popup-buttons">
+                <button id="uploadBtn" disabled>Subir</button>
+                <button id="closeBtn" class="close-btn">Cerrar</button>
+            </div>
+        </div>
+    </div>
+   <!-- Botón flotante para abrir el diálogo de "Nuevo mensaje" -->
+   <div class="fixed-container">
+    <button id="compose-btn" class="compose-btn" title="Nuevo mensaje">
+      <!-- Ícono de editar (lápiz) en SVG -->
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4H6a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2v-5M18.5 2.5a2.121 2.121 0 113 3L12 15l-4 1 1-4 9.5-9.5z" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Modal para seleccionar amigo (Nuevo mensaje) -->
+  <div id="compose-modal" class="modal hidden">
+    <div class="modal-overlay" id="compose-overlay"></div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Nuevo mensaje</h2>
+        <button class="close-button" onclick="closeFriendsModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <label for="search-input">Para:</label>
+        <input type="text" id="search-input" placeholder="Buscar amigos..." />
+        <div class="scroll-area" id="friends-list">
+          <!-- Aquí se insertarán los botones con los amigos filtrados -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal para el chat con el amigo seleccionado -->
+  <div id="chat-modal" class="modal hidden">
+    <div class="modal-overlay" id="chat-overlay"></div>
+    <div class="modal-content">
+      <div class="chat-interface">
+        <!-- Header -->
+        <div class="chat-header">
+          <div class="header-left">
+            <div class="avatar">
+              <img id="chat-avatar" src="https://via.placeholder.com/32" alt="YC" />
+            </div>
+            <span id="chat-friend-name">Yazmi Concepción...</span>
+          </div>
+          <div class="header-right">
+            <button class="icon-btn" title="Llamar">
+              <i data-lucide="phone" width="20" height="20"></i>
+            </button>
+            <button class="icon-btn" title="Video">
+              <i data-lucide="video" width="20" height="20"></i>
+            </button>
+            <button class="icon-btn" title="Cerrar" id="close-chat-btn">
+              <i data-lucide="x" width="20" height="20"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Área de mensajes -->
+        <div id="messagesContainer" class="chat-messages">
+          <!-- Los mensajes se insertarán dinámicamente aquí -->
+        </div>
+
+        <!-- Barra inferior -->
+        <div class="bottom-toolbar">
+          <button class="icon-btn" title="Micrófono">
+            <i data-lucide="mic" width="20" height="20"></i>
+          </button>
+          <button class="icon-btn" title="Imagen">
+            <i data-lucide="image" width="20" height="20"></i>
+          </button>
+          <div class="input-wrapper">
+            <i data-lucide="message-circle" class="input-icon" width="20" height="20"></i>
+            <input type="text" id="chatInput" placeholder="Aa" />
+          </div>
+          <button class="icon-btn send-btn" title="Enviar" id="sendButton">
+            <i data-lucide="send" width="20" height="20"></i>
+          </button>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="../public/js/perfil.js"></script>
+    <script src="../public/js/app.js"></script>
+</body>
+</html>

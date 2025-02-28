@@ -1,0 +1,1432 @@
+/* ------------------------------------
+   RESET Y CONFIGURACIÓN BÁSICA
+------------------------------------ */
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "poppins", sans-serif;
+  box-sizing: border-box;
+  
+}
+
+/* Fondo y color del cuerpo */
+body {
+  background: #f0f2f5;
+  color: #5f5f5f;
+}
+
+/* Estilo para todos los enlaces */
+a {
+  text-decoration: none;
+  color: #5f5f5f;
+}
+
+/* ------------------------------------
+   NAVBAR
+------------------------------------ */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  padding: 6px 6%;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.logo img {
+  width: 50px;
+  margin-right: 50px;
+  display: block;
+}
+
+.navbar-center ul li {
+  display: inline-block;
+  list-style: none;
+}
+.navbar-center ul li a img {
+  width: 20px;
+}
+.navbar-center ul li a span {
+  margin-left: 8px;
+}
+
+.navbar-center ul li a {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  margin: 5px 8px;
+  padding-right: 5px;
+  position: relative;
+  text-decoration: none;
+  color: #333;
+}
+
+.navbar-center ul li a img {
+  width: 30px;
+}
+
+.navbar-center ul li a.active-link::after {
+  width: 100%;
+}
+
+/* Imagen de perfil en la navbar */
+.nav-profile-img {
+  width: 40px;
+  border-radius: 50%;
+  display: block;
+  cursor: pointer;
+  position: relative;
+  left: 50px;
+}
+
+/* Caja de búsqueda */
+.search-box {
+  background: #f0f2f5;
+  width: 250px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+}
+
+.search-box img {
+  width: 14px;
+}
+
+.search-box input {
+  width: 100%;
+  background: transparent;
+  padding: 8px;
+  outline: none;
+  border: 0;
+}
+
+/* ------------------------------------
+   NOTIFICACIONES
+------------------------------------ */
+.notifications-panel {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 380px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-top: 5px;
+}
+
+.notifications-header {
+  padding: 16px;
+  border-bottom: 1px solid #e4e6eb;
+}
+
+.notifications-header h2 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 8px;
+  gap: 8px;
+  background-color: #f0f2f5;
+}
+
+.tab-btn {
+  padding: 8px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-weight: 500;
+  border-radius: 4px;
+  color: #65676b;
+}
+
+.tab-btn.active {
+  background-color: white;
+  color: #1b74e4;
+}
+
+.notifications-content {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.notification-item {
+  display: flex;
+  padding: 12px;
+  gap: 12px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.notification-item:hover {
+  background-color: #f0f2f5;
+}
+
+.notification-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.notification-details {
+  flex: 1;
+}
+
+.notification-text {
+  font-size: 14px;
+  margin-bottom: 4px;
+  color: #1a1a1a;
+}
+
+.notification-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #65676b;
+}
+
+.unread-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #1b74e4;
+  border-radius: 50%;
+}
+
+.ver-todo {
+  width: 100%;
+  padding: 8px;
+  border: none;
+  background: none;
+  color: #65676b;
+  font-size: 14px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.ver-todo:hover {
+  background-color: #f0f2f5;
+}
+
+/* Mostrar el panel cuando el padre tiene la clase show */
+#notifications-toggle.show .notifications-panel {
+  display: block;
+}
+
+/* ------------------------------------
+   CONTENEDOR PRINCIPAL
+------------------------------------ */
+.container {
+  padding: 20px 6%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+/* Sección principal del perfil */
+.profile-main {
+  flex-basis: 73%;
+}
+
+/* Contenedor del perfil */
+.profile-container {
+  background: rgb(243, 243, 243);
+  border-radius: 8px 10px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  text-decoration: none;
+  border-radius: 10px; /* Bordes más redondeados */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+}
+
+.profile-container-inner {
+  padding: 0 4% 10px;
+}
+
+.profile-container h1 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #222;
+  margin-top: 6px;
+}
+
+.profile-container b {
+  font-weight: 500;
+}
+
+.profile-container p {
+  margin-top: 5px;
+}
+
+.profile-container a {
+  color: #045be6;
+  font-weight: 500;
+  margin-top: -75px; /* OJO: puede afectar el layout si se superpone */
+}
+
+/* ------------------------------------
+   ENCABEZADO DEL PERFIL
+------------------------------------ */
+.profile-btn {
+  margin-top: -10px;
+}
+
+.profile-btn a {
+  display: inline-flex;
+  align-items: center;
+  background: #ffffff;
+  padding: 5px 7px;
+  border-radius: 50px;
+  margin-right: 5px;
+  text-decoration: none;
+}
+
+.profile-btn a img {
+  width: 15px;
+  margin-right: 0px;
+}
+
+.profile-btn .primary-btn {
+  background: #8a1e0f;
+  color: #fff;
+  border-radius: 50px;
+  padding: 6px 10px;
+  text-decoration: none;
+}
+
+/* ------------------------------------
+   SECCIÓN DE DESCRIPCIÓN
+------------------------------------ */
+.profile-description {
+  background: #fff;
+  padding: 20px 4% 30px;
+  margin: 12px 0;
+  border-radius: 10px; /* Bordes más redondeados */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+}
+
+.profile-description h2 {
+  color: #000000;
+  margin: 10px 0 20px;
+  font-weight: 600;
+}
+
+/* Estilo para todos los formularios */
+.experienceForm,
+.educationForm,
+.skillsForm,
+.languagesForm {
+  background: #fff;
+  padding: 20px 4% 30px;
+  margin: 12px 0;
+  border-radius: 10px; /* Bordes más redondeados */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+}
+
+/* Estilo para los títulos de sección dentro de los formularios */
+.experienceForm .section-title,
+.educationForm .section-title,
+.skillsForm .section-title,
+.languagesForm .section-title {
+  color: #000000;
+  margin: 10px 0 20px;
+  font-weight: 600;
+  
+}
+
+/* ------------------------------------
+   SIDEBAR
+------------------------------------ */
+.sidebar-ad {
+  background: #770000;
+  padding: 15px 25px;
+  text-align: center;
+  margin: 12px 0;
+  font-size: 12px;
+}
+
+.sidebar-ad img {
+  width: 60px;
+  border-radius: 50%;
+}
+
+.ad-link {
+  display: inline-block;
+  border: 1px solid #045be6;
+  border-radius: 30px;
+  padding: 5px 15px;
+  color: #045be6;
+  font-weight: 400;
+  margin: 15px auto 10px;
+}
+.sidebar-people {
+  background: #fff;
+  padding: 40px 60px; /* Aumenta el espacio interno */
+  margin: 12px 0;
+  font-size: 14px; /* Aumenta el tamaño del texto */
+  width: 270px; /* Ancho más grande */
+  height: auto; /* Se ajusta al contenido, usa height: 400px si quieres un tamaño fijo */
+  position: fixed; /* Se mantiene fija en la pantalla */
+  top: 11%; /* Distancia desde la parte superior */
+  right: 5.5%; /* Distancia desde la derecha */
+  border-radius: 10px; /* Bordes más redondeados */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+}
+
+/* ------------------------------------
+   COVER PHOTO (BANNER)
+------------------------------------ */
+.cover-photo {
+  /* Ajuste para contrarrestar el padding de 6% a izquierda y derecha */
+  margin-left: -6%;
+  margin-right: -6%;
+  width: calc(100% + 12%);
+  height: 200px;
+  background: blue; /* o #11016b */
+  position: relative; /* Importante para que .edit-pencil se posicione relativo a este contenedor */
+}
+
+.camera-icon {
+  position: absolute;
+  right: 3%;   /* Ajusta este valor según la estructura de tu contenedor */
+  top: 3.80%;     
+  background: rgb(133, 0, 0);
+  padding: 1%;  /* También puede ser un porcentaje */
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+}
+/* ------------------------------------
+   SECCIÓN DE PERFIL
+------------------------------------ */
+.profile-section {
+  padding: 20px;
+  position: relative;
+  
+}
+
+.profile-pic {
+  width: 150px;
+  height: 150px;
+  background: #fff;
+  border: 4px solid #ee8e8e;
+  border-radius: 50%;
+  margin-top: -100px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+}
+
+.profile-pic img {
+  /* Para mantener proporción */
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.profile-name {
+  font-size: 24px;
+  color: #333;
+  margin: 15px 0 5px;
+}
+
+.profile-headline {
+  color: #666;
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+/* ------------------------------------
+   INTERESTS
+------------------------------------ */
+.interest-section {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.add-interest {
+  background: rgba(139, 6, 6, 0.8);
+  color: rgb(255, 255, 255);
+  padding: -0px 16px;
+  border-radius: 50px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.interest-tag {
+  background: #c0c0c0;
+  padding: 6px 16px;
+  border-radius: 16px;
+  font-size: 14px;
+  display: inline-block;
+  margin: 5px;
+}
+
+.modalo {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 50px;
+}
+
+.modal-contento {
+  background-color: #d3d3d3;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #f1f1f1;
+  width: 80%;
+  max-width: 500px;
+  border-radius: 40px;
+}
+
+#currentInterests {
+  margin-top: 20px;
+}
+
+.interest-item {
+  display: inline-block;
+  background-color: #bebebe;
+  padding: 5px 10px;
+  margin: 5px;
+  border-radius: 20px;
+}
+
+.remove-interest {
+  background-color: #a19b9b;
+  color: rgb(0, 0, 0);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+/* ------------------------------------
+   POPUP EDIT
+------------------------------------ */
+.popup#editPopup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+}
+
+.popup#editPopup .popup-content {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 600px;
+  max-width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  animation: slideIn 0.3s ease-out;
+}
+
+.popup#editPopup h3 {
+  color: #1a1a1a;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #f0f0f0;
+  text-align: left;
+}
+
+.popup#editPopup form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.popup#editPopup .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.popup#editPopup label {
+  color: #4a4a4a;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.popup#editPopup input[type="text"],
+.popup#editPopup textarea {
+  padding: 0.75rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  transition: border-color 0.2s ease;
+  background-color: #f8f8f8;
+}
+
+.popup#editPopup input[type="text"]:focus,
+.popup#editPopup textarea:focus {
+  border-color: #8a1e0f;
+  outline: none;
+  background-color: #fff;
+}
+
+.popup#editPopup textarea {
+  resize: vertical;
+  min-height: 100px;
+  line-height: 1.5;
+}
+
+.popup#editPopup .popup-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 2px solid #f0f0f0;
+}
+
+.popup#editPopup button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.popup#editPopup button[onclick="saveProfile()"] {
+  background-color: #8a1e0f;
+  color: white;
+}
+
+.popup#editPopup button[onclick="saveProfile()"]:hover {
+  background-color: #6b170c;
+}
+
+.popup#editPopup .close-btn {
+  background-color: #f0f0f0;
+  color: #4a4a4a;
+}
+
+.popup#editPopup .close-btn:hover {
+  background-color: #e0e0e0;
+}
+
+.popup#editPopup input::placeholder,
+.popup#editPopup textarea::placeholder {
+  color: #999;
+  font-size: 0.9rem;
+}
+
+.popup#editPopup .popup-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.popup#editPopup .popup-content::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.popup#editPopup .popup-content::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+.popup#editPopup .popup-content::-webkit-scrollbar-thumb:hover {
+  background: #a1a1a1;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.popup#editPopup input[required] {
+  border-left: 4px solid #8a1e0f;
+}
+
+.popup#editPopup .form-group input[required] + label::after {
+  content: " *";
+  color: #8a1e0f;
+}
+
+/* Responsivo del popup */
+@media (max-width: 768px) {
+  .popup#editPopup .popup-content {
+    padding: 1.5rem;
+    width: 95%;
+  }
+  .popup#editPopup h3 {
+    font-size: 1.25rem;
+  }
+  .popup#editPopup button {
+    padding: 0.6rem 1.2rem;
+  }
+  .popup#editPopup .popup-buttons {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+/* ------------------------------------
+   POPUP GENÉRICO
+------------------------------------ */
+.edit-pencil {
+  position: absolute; /* Ubicación absoluta */
+  right: -20px; /* Alineado a la derecha */
+  top: 10px; /* Alineado en la parte superior */
+  background: rgb(133, 0, 0); /* Fondo rojo oscuro */
+  padding: 11px; /* Espaciado interno */
+  border-radius: 50%; /* Forma redonda */
+  display: flex; /* Alinear contenido */
+  justify-content: center; /* Centrar horizontalmente */
+  align-items: center; /* Centrar verticalmente */
+  cursor: pointer; /* Cambiar el cursor a puntero */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+}
+
+.edit-pencil img {
+  width: 16px; /* Ajusta el tamaño del ícono */
+  height: 16px;
+  object-fit: cover;
+}
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  width: 400px;
+  max-width: 90%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.popup-content h3 {
+  margin-bottom: 10px;
+  font-size: 18px;
+  text-align: center;
+}
+
+.popup-content form {
+  display: flex;
+  flex-direction: column;
+}
+
+.popup-content form label {
+  margin: 5px 0 3px;
+  font-weight: bold;
+}
+
+.popup-content form input,
+.popup-content form textarea,
+.popup-content form button {
+  margin-bottom: 10px;
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.popup-content form button {
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+.popup-content form button.close-btn {
+  background-color: #dc3545;
+}
+
+/* ------------------------------------
+   CARD (ABOUT, SKILLS, ETC.)
+------------------------------------ */
+.card {
+  background: white;
+  max-width: 800px;
+  margin: 0 auto 20px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 24px;
+}
+
+.about-section {
+  position: relative;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.section-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.more-btn {
+  background: none;
+  border: none;
+  color: #2563eb;
+  cursor: pointer;
+  font-size: 0.875rem;
+}
+.more-btn:hover {
+  text-decoration: underline;
+}
+
+.about-content {
+  position: relative;
+  max-height: 4.5em;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+
+.about-content.expanded {
+  max-height: 1000px;
+  transition: max-height 0.5s ease-in;
+}
+
+.about-text {
+  line-height: 1.5;
+  color: #374151;
+}
+
+.edit-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: none;
+  border: none;
+  color: #6b7280;
+  cursor: pointer;
+  padding: 4px;
+}
+.edit-btn:hover {
+  color: #2563eb;
+}
+
+.edit-container {
+  margin-top: 16px;
+  display: none;
+}
+
+.edit-container.active {
+  display: block;
+}
+
+textarea {
+  width: 100%;
+  min-height: 120px;
+  padding: 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  resize: vertical;
+  margin-bottom: 12px;
+}
+textarea:focus {
+  outline: none;
+  border-color: #2563eb;
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.button {
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.button-primary {
+  background: #2563eb;
+  border: 1px solid #2563eb;
+  color: white;
+}
+.button-primary:hover {
+  background: #1d4ed8;
+}
+
+.button-secondary {
+  background: white;
+  border: 1px solid #e5e7eb;
+  color: #374151;
+}
+.button-secondary:hover {
+  background: #f9fafb;
+}
+
+.section {
+  padding: 24px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.section:last-child {
+  border-bottom: none;
+}
+
+.skills-container,
+.languages-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.skill-item,
+.language-item {
+  display: flex;
+  align-items: center;
+  background-color: #f3f4f6;
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-size: 0.875rem;
+}
+
+.delete-btn {
+  background: none;
+  border: none;
+  color: #6b7280;
+  margin-left: 8px;
+  cursor: pointer;
+  padding: 2px;
+}
+.delete-btn:hover {
+  color: #ef4444;
+}
+
+.input-container {
+  margin-top: 16px;
+}
+
+.input-row {
+  display: flex;
+  gap: 8px;
+}
+
+input {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 4px;
+  font-size: 0.875rem;
+}
+input:focus {
+  outline: none;
+  border-color: #2563eb;
+}
+
+.card-header {
+  padding: 24px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.card-content {
+  padding: 24px;
+}
+
+.entry-card {
+  position: relative;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  padding: 24px;
+  margin-bottom: 16px;
+  background: white;
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 4px;
+}
+
+.button-outline {
+  background: white;
+  border: 1px solid #e5e7eb;
+  color: #374151;
+}
+.button-outline:hover {
+  background: #f9fafb;
+}
+
+.trash-icon {
+  width: 16px;
+  height: 16px;
+}
+
+/* ------------------------------------
+   PERFIL MENÚ
+------------------------------------ */
+.perfil {
+  position: relative;
+  display: inline-block;
+}
+.perfil img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+/* ------------------------------------
+   NOTIFICATION POPUP
+------------------------------------ */
+.notification-popup {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 15px 20px;
+  border-radius: 5px;
+  display: none;
+  z-index: 1000;
+}
+
+/* ------------------------------------
+   FIXED CONTAINER (COMPOSE BUTTON)
+------------------------------------ */
+.fixed-container {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  z-index: 1000;
+}
+.compose-btn {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  background-color: #2d2d2d;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+}
+.compose-btn:hover {
+  background-color: #3a3a3a;
+}
+.compose-btn.hidden {
+  display: none;
+}
+
+/* ------------------------------------
+   MODAL (DIÁLOGO)
+------------------------------------ */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.modal.hidden {
+  display: none;
+}
+.modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.modal-content {
+  position: fixed;
+  bottom: 0;
+  right: 1rem;
+  margin: 0;
+  max-width: 400px;
+  background-color: #1a1a1a;
+  border: 1px solid #2d2d2d;
+  border-radius: 8px 8px 0 0;
+  padding: 1rem; ;
+  border: 1px solid #2d2d2d;
+  border-radius: 8px 8px 0 0;
+  padding: 1rem;
+  z-index: 2100;
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* ------------------------------------
+   CHAT INTERFACE
+------------------------------------ */
+.modal-header h2 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+.modal-body {
+  margin-top: 1rem;
+}
+.modal-body label {
+  display: block;
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+}
+.modal-body input[type="text"] {
+  width: 100%;
+  padding: 0.5rem;
+  background-color: transparent;
+  border: 1px solid #444;
+  border-radius: 4px;
+  color: white;
+}
+.scroll-area {
+  max-height: 300px;
+  overflow-y: auto;
+  margin-top: 1rem;
+}
+.friend-button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  border: none;
+  background: none;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.friend-button:hover {
+  background-color: #2d2d2d;
+}
+.friend-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+}
+
+/* Modal de chat */
+.chat-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #2d2d2d;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+.chat-header .avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 0.5rem;
+}
+.chat-header .avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.chat-info .friend-name {
+  font-weight: bold;
+}
+.chat-info .friend-status,
+.chat-info .friend-location {
+  font-size: 0.75rem;
+  color: #aaa;
+}
+.chat-body {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.chat-body input[type="text"] {
+  flex: 1;
+  padding: 0.5rem;
+  background-color: transparent;
+  border: 1px solid #444;
+  border-radius: 4px;
+  color: white;
+}
+.icon-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: white;
+}
+
+/* Contenedor principal del chat */
+.chat-interface {
+  width: 100%;
+  max-width: 400px;
+  background-color: #242526;
+  display: flex;
+  flex-direction: column;
+  height: 500px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Área de mensajes */
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.message-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.message-bubble {
+  background-color: #2563eb;
+  border-radius: 16px;
+  padding: 8px 16px;
+  max-width: 80%;
+  word-wrap: break-word;
+}
+.message-timestamp {
+  font-size: 0.75rem;
+  color: #9ca3af;
+  margin-top: 4px;
+}
+
+/* Barra inferior (toolbar) */
+.bottom-toolbar {
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.bottom-toolbar .icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+.bottom-toolbar .icon-btn:hover {
+  background-color: rgba(59, 130, 246, 0.1);
+  border-radius: 4px;
+}
+.bottom-toolbar input {
+  flex: 1;
+  background-color: #3a3b3c;
+  border: none;
+  border-radius: 9999px;
+  padding: 8px 16px;
+  font-size: 14px;
+  color: white;
+}
+.bottom-toolbar input:focus {
+  outline: none;
+}
+.active-send {
+  color: #3b82f6;
+}
+.inactive-send {
+  color: #6b7280;
+}
+
+/* Input wrapper y iconos */
+.input-wrapper {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+.input-wrapper input {
+  padding-left: 40px;
+}
+.input-icon {
+  position: absolute;
+  left: 12px;
+  color: #6b7280;
+}
+.send-btn {
+  color: #3b82f6;
+  transition: transform 0.2s;
+}
+.send-btn:hover {
+  transform: translateX(2px);
+}
+.send-btn:active {
+  transform: translateX(4px);
+}
+.profile-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 200px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  padding: 8px 0;
+  margin-top: 10px;
+  display: none;
+  left: 83%;
+}
+
+.profile-dropdown.show {
+  display: block;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.profile-dropdown::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  right: 16px;
+  width: 12px;
+  height: 12px;
+  background: white;
+  transform: rotate(45deg);
+  border-left: 1px solid rgba(0,0,0,0.1);
+  border-top: 1px solid rgba(0,0,0,0.1);
+}
+
+.profile-dropdown a {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  color: #333;
+  text-decoration: none;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+.profile-dropdown a i {
+  margin-right: 10px;
+  font-size: 18px;
+}
+
+.profile-dropdown a:hover {
+  background-color: #f0f2f5;
+}
+
+#logoutBtn {
+  border-top: 1px solid #eee;
+  margin-top: 5px;
+  color: #dc3545;
+}
+
+#logoutBtn:hover {
+  background-color: #fff5f5;
+}
+
+/* ------------------------------------
+   MEDIA QUERIES RESPONSIVE EXTRA
+------------------------------------ */
+/* Pequeños dispositivos (tablets, pantallas medianas) */
+@media (max-width: 992px) {
+  .container {
+    flex-wrap: wrap;
+  }
+  .profile-main {
+    flex-basis: 100%;
+  }
+}
+
+/* Dispositivos más pequeños (móviles) */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    padding: 10px;
+  }
+  .profile-main {
+    flex-basis: 100%;
+    margin-bottom: 20px;
+  }
+  /* Si tienes una barra lateral (sidebar) agrégale aquí flex-basis: 100% */
+  /* .sidebar {
+       flex-basis: 100%;
+       margin-bottom: 20px;
+  } */
+}
+
