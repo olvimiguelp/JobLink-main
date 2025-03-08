@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JobLink - Plataforma de Empleo</title>
   <link rel="stylesheet" href="../public/css/interfaz.css" />
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
 <body>
@@ -18,16 +20,16 @@
         <i class="fas fa-plus"></i> Crear oferta
       </button>
       <a href="#" class="nav-item">
-          <i>📨</i><span>Mensajes</span>
+          <i>📨</i><span>ofertas borradas</span>
       </a>
-      <a href="#" class="nav-item">
-          <i>⭐</i><span>Favoritos</span>
+      <a href="#" id="open-favoritos-modal" class="nav-item">
+        <i>⭐</i><span>Favoritos</span>
       </a>
       <a href="#" class="nav-item">
           <i>✉️</i><span>Notificaciones</span>
       </a>
-      <a href="#" class="nav-item">
-          <i>⚠️</i><span>Estafas</span>
+      <a href="#" class="nav-item" id="open-reportes-modal">
+        <i>⚠️</i><span>Estafas</span>
       </a>
     </div>
 
@@ -45,16 +47,16 @@
             <!-- Menú de navegación central -->
             <ul>
                 <li>
-                    <a href="#" class="active-link">
-                        <img src="../public/images/jobs.png" alt="Empleos" />
-                        <span>Empleos</span>
+                    <a href="#" id="created-offers-btn" class="nav-link">
+                        <img src="../public/images/jobs.png" alt="Ofertas" />
+                        <span>Ofertas Creadas</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
-                        <img src="../public/images/message.png" alt="Mensajes" />
-                        <span>Mensajes</span>
-                    </a>
+                  <a href="#" id="open-cv">
+                    <img src="../public/images/message.png" alt="Mensajes" />
+                    <span>Mensajes</span>
+                  </a>
                 </li>
                 <li id="notifications-toggle">
                     <a href="#">
@@ -65,14 +67,14 @@
             </ul>
         </div>
         <div class="nav-profile">
-            <!-- Elimina onclick de la etiqueta img -->
-            <img src="../public/images/Secciones.jpeg" class="nav-profile-img" alt="Perfil" />
+          <img src="../public/images/seeSecciones.jpeg" id="profileImg" 
+          class="nav-profile-img" alt="Perfil" 
+          onerror="this.onerror=null; this.src='../public/images/seeSecciones.jpeg';" />
             <div class="profile-dropdown" id="menuPerfil">
                 <div class="radio-btn" onclick="toggleDarkMode()">
                     <div class="radio-inner"></div>
                 </div>
-                <a href="perfil.html"><i class='bx bxs-user'></i> Mi Perfil</a>
-                <a href="/configuracion"><i class='bx bxs-cog'></i> Configuración</a>
+                <a href="/profile" id="profileLink" class="profile-link"><i class='bx bxs-user'></i> Mi Perfil</a>
                 <a href="#" id="logoutBtn"><i class='bx bxs-log-out'></i> Cerrar Sesión</a>
             </div>
         </div>
@@ -144,7 +146,7 @@
                       <label for="job-status">Estado</label>
                       <select id="job-status" name="status">
                         <option value="Active">Activo</option>
-                        <option value="Closed">Cerrado</option>
+                        <option value="Closed">inativo</option>
                         <option value="Draft">Borrador</option>
                       </select>
                     </div>
@@ -208,10 +210,82 @@
             </div>
           </div>
         </div>
+
+        <!-- Modal de Ofertas Creadas (NUEVO) -->
+        <div id="created-offers-modal" class="modal">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h2>Ofertas Creadas</h2>
+              <button id="close-created-offers-modal-btn" class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+              <div id="created-offers-container" class="created-offers-container">
+                <!-- Se inyectarán las ofertas creadas mediante JavaScript -->
+              </div>
+            </div>
+          </div>
+        </div>
+      <!-- Modal de Ofertas borradas Creadas (NUEVO) -->
+        <div id="borradas-offers-modal" class="modal-borradas">
+          <div class="modal-content-borradas">
+            <div class="modal-header-borradas">
+              <h2>Ofertas borradas</h2>
+              <button id="close-borradas-offers-modal-btn" class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+              <div id="borradas-offers-container" class="borradas-offers-container">
+                <!-- Se inyectarán las ofertas creadas mediante JavaScript -->
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+
+      <div id="modal-reportes" class="modal">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2>Reportes de Estafas</h2>
+            <button id="close-reportes-modal-btn" class="close-btn">&times;</button>
+          </div>
+          <div class="modal-body">
+            <div id="reportes-container">
+              <!-- Se inyectarán los reportes mediante JavaScript -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="modal-cv" class="modal-cv">
+        <div class="modal-content-cv">
+          <div class="modal-header-cv">
+            <h2>Curriculum Vitae</h2>
+            <button id="close-cv-modal-btn" class="close-btn">&times;</button>
+          </div>
+          <div class="modal-body-cv">
+            <!-- Aquí se inyecta el contenido del CV -->
+            <p>Contenido del CV...</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="modal-favoritos" class="modal-favoritos">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2>Favoritos</h2>
+            <button id="close-favoritos-modal-btn" class="close-btn">&times;</button>
+          </div>
+          <div class="modal-body">
+            <div id="favoritos-container">
+              <!-- Se inyectarán los favoritos mediante JavaScript -->
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- Fin job-offers-section -->
     </main>
   </div>
+
 
   <!-- Placeholder SVG para imágenes vacías -->
   <svg id="placeholder-svg" style="display: none;" width="80" height="80" xmlns="http://www.w3.org/2000/svg">

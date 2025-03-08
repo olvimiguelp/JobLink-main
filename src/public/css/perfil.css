@@ -75,11 +75,17 @@ a {
 /* Imagen de perfil en la navbar */
 .nav-profile-img {
   width: 40px;
+  min-width: 40px;
+  max-width: 40px;
+  height: 40px;
+  min-height: 40px;
+  max-height: 40px;
   border-radius: 50%;
   display: block;
   cursor: pointer;
   position: relative;
   left: 50px;
+  object-fit: cover;
 }
 
 /* Caja de búsqueda */
@@ -331,21 +337,154 @@ a {
 .skillsForm,
 .languagesForm {
   background: #fff;
-  padding: 20px 4% 30px;
-  margin: 12px 0;
-  border-radius: 10px; /* Bordes más redondeados */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+  padding: 25px;
+  border-radius: 15px;
+  margin: 20px 0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
 }
 
-/* Estilo para los títulos de sección dentro de los formularios */
-.experienceForm .section-title,
-.educationForm .section-title,
-.skillsForm .section-title,
-.languagesForm .section-title {
-  color: #000000;
-  margin: 10px 0 20px;
+.experienceForm:hover,
+.educationForm:hover,
+.skillsForm:hover,
+.languagesForm:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.section-title {
+  color: #1a1a1a;
+  font-size: 1.5rem;
   font-weight: 600;
-  
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #f0f0f0;
+  position: relative;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 50px;
+  height: 2px;
+  background: #8a1e0f;
+}
+
+.profile-desc-row {
+  padding: 15px 0;
+}
+
+/* Estilos para los items de experiencia y educación */
+.experience-item,
+.education-item {
+  padding: 20px;
+  border-left: 3px solid #8a1e0f;
+  margin-bottom: 15px;
+  background: #f8f9fa;
+  border-radius: 0 10px 10px 0;
+  transition: all 0.3s ease;
+}
+
+.experience-item:hover,
+.education-item:hover {
+  background: #fff;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  transform: translateX(5px);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  transform: translateX(5px);
+}
+
+.experience-item h3,
+.education-item h3 {
+  color: #1a1a1a;
+  font-size: 1.1rem;
+  margin-bottom: 5px;
+}
+
+.experience-item p,
+.education-item p {
+  color: #666;
+  font-size: 0.95rem;
+  margin: 5px 0;
+}
+
+/* Estilos para las habilidades */
+#skillsSectionDisplay {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 10px 0;
+}
+
+.skill-item {
+  background: #f0f2f5;
+  color: #1a1a1a;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  border: 1px solid #e4e6eb;
+}
+
+.skill-item:hover {
+  background: #8a1e0f;
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* Estilos para los idiomas */
+#languagesSectionDisplay {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 10px 0;
+}
+
+.language-item {
+  background: #fff;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: 1px solid #e4e6eb;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.language-item:hover {
+  background: #f8f9fa;
+  border-color: #8a1e0f;
+}
+
+.language-item::before {
+  content: '🌐';
+  font-size: 1.1rem;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  .experienceForm,
+  .educationForm,
+  .skillsForm,
+  .languagesForm {
+    padding: 15px;
+  }
+
+  .section-title {
+    font-size: 1.25rem;
+  }
+
+  .experience-item,
+  .education-item {
+    padding: 15px;
+  }
+
+  .skill-item,
+  .language-item {
+    font-size: 0.85rem;
+  }
 }
 
 /* ------------------------------------
@@ -391,13 +530,47 @@ a {
    COVER PHOTO (BANNER)
 ------------------------------------ */
 .cover-photo {
-  /* Ajuste para contrarrestar el padding de 6% a izquierda y derecha */
   margin-left: -6%;
   margin-right: -6%;
   width: calc(100% + 12%);
-  height: 200px;
-  background: blue; /* o #11016b */
-  position: relative; /* Importante para que .edit-pencil se posicione relativo a este contenedor */
+  height: 200px; /* Aumentamos la altura para mejor visualización */
+  position: relative;
+  overflow: hidden;
+  background-color: #f0f2f5; /* Color de fondo por defecto */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cover-photo img {
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: cover;
+  object-position: center;
+  transform: scale(1.01); /* Evita bordes blancos */
+  transition: transform 0.3s ease;
+}
+
+/* Opcional: añadir efecto hover suave */
+.cover-photo:hover img {
+  transform: scale(1.05);
+}
+
+/* Media query para imágenes muy anchas o altas */
+@media (max-aspect-ratio: 16/9) {
+  .cover-photo img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media (min-aspect-ratio: 16/9) {
+  .cover-photo img {
+    width: auto;
+    height: 100%;
+  }
 }
 
 .camera-icon {
@@ -435,14 +608,14 @@ a {
   justify-content: center;
   position: relative;
   cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .profile-pic img {
-  /* Para mantener proporción */
   width: 100%;
-  height: auto;
-  object-fit: cover;
+  height: 100%; /* Cambiado a 100% */
+  object-fit: cover; /* Asegura que la imagen cubra todo el espacio */
+  object-position: center; /* Centra la imagen */
 }
 
 .profile-name {
@@ -1399,6 +1572,124 @@ label {
 #logoutBtn:hover {
   background-color: #fff5f5;
 }
+.skill-item, .language-item {
+  cursor: pointer;
+}
+
+.delete-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 2px;
+  margin-left: 5px;
+}
+
+.delete-btn i {
+  font-size: 16px;
+  color: #666;
+}
+
+.delete-btn:hover i {
+  color: #ff4444;
+}
+
+/* ------------------------------------
+   DELETE BUTTONS STYLES
+------------------------------------ */
+
+/* Delete button for entry cards (experiences & education) */
+.delete-btn\.1 {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.delete-btn\.1:hover {
+  background-color: #d32f2f;
+}
+
+/* Delete button for skills */
+.delete-btn\.2 {
+  background: none;
+  border: none;
+  color: #666;
+  margin-left: 8px;
+  padding: 4px;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.delete-btn\.2:hover {
+  background-color: #ffebee;
+  color: #f44336;
+}
+
+/* Delete button for languages */
+.delete-btn\.3 {
+  background: none;
+  border: none;
+  color: #666;
+  margin-left: 8px;
+  padding: 4px;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.delete-btn\.3:hover {
+  background-color: #e3f2fd;
+  color: #2196f3;
+}
+
+/* Delete button for skills in edit mode */
+.delete-btn\.4 {
+  background: none;
+  border: none;
+  color: #666;
+  margin-left: 8px;
+  padding: 4px;
+  cursor: pointer;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.skill-item:hover .delete-btn\.4 {
+  opacity: 1;
+}
+
+.delete-btn\.4:hover {
+  color: #f44336;
+  transform: scale(1.2);
+}
+
+/* Delete button for languages in edit mode */
+.delete-btn\.5 {
+  background: none;
+  border: none;
+  color: #666;
+  margin-left: 8px;
+  padding: 4px;
+  cursor: pointer;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.language-item:hover .delete-btn\.5 {
+  opacity: 1;
+}
+
+.delete-btn\.5:hover {
+  color: #2196f3;
+  transform: scale(1.2);
+}
 
 /* ------------------------------------
    MEDIA QUERIES RESPONSIVE EXTRA
@@ -1430,3 +1721,164 @@ label {
   } */
 }
 
+/* Estilos para el botón guardar */
+.button-primary.saving {
+    position: relative;
+    background-color: #6b170c;
+    pointer-events: none;
+    padding-left: 35px;
+}
+
+.button-primary.saving::before {
+    content: '';
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    width: 16px;
+    height: 16px;
+    margin-top: -8px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spinner .6s linear infinite;
+}
+
+@keyframes spinner {
+    to {transform: rotate(360deg);}
+}
+
+.button-primary.success {
+    background-color: #22c55e;
+}
+
+.button-primary.error {
+    background-color: #dc2626;
+}
+
+/* Add these styles for the amigos modal */
+.amigos-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.amigos-modal.hidden {
+  display: none;
+}
+
+.amigos-modal-content {
+  background-color: white;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 600px;
+  max-height: 80vh;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.amigos-modal-header {
+  padding: 16px;
+  border-bottom: 1px solid #e0e0e0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.amigos-modal-header h2 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.amigos-modal-body {
+  padding: 16px;
+  max-height: calc(80vh - 60px);
+  overflow-y: auto;
+}
+
+.amigos-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 16px;
+}
+
+.amigo-card {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.amigo-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.amigo-avatar img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.amigo-info {
+  flex: 1;
+}
+
+.amigo-info h3 {
+  margin: 0 0 4px 0;
+  font-size: 1rem;
+}
+
+.amigo-info p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: #666;
+}
+
+.amigo-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.amigo-actions button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+}
+
+.message-btn:hover {
+  background-color: #e3f2fd;
+  color: #1976d2;
+}
+
+.remove-btn:hover {
+  background-color: #ffebee;
+  color: #d32f2f;
+}
+
+.loading-message, .empty-message, .error-message {
+  padding: 24px;
+  text-align: center;
+  color: #666;
+  width: 100%;
+}
+
+.error-message {
+  color: #d32f2f;
+}

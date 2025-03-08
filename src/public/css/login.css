@@ -247,3 +247,26 @@ a {
     font-size: 16px;
     color: #ffffff;
 }
+.popup-message {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 15px 20px;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    background-color: black;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    transition: opacity 0.5s ease-in-out;
+  }
+  .success {
+    background-color: #28a745;
+  }
+  .error {
+    background-color: #dc3545;
+  }
+  .fade-out {
+    opacity: 0;
+  }

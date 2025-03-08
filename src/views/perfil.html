@@ -6,18 +6,18 @@
     <link rel="shortcut icon" href="../public/images/logo.jpg" />
     <title>JobLink</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="../public/css/perfil.css" />
+    <link rel="stylesheet" href="/public/css/perfil.css" />
 </head>
 <body>
     <!-- Barra de navegación principal -->
     <nav class="navbar">
         <div class="navbar-left">
             <!-- Logo y caja de búsqueda -->
-            <a href="./interfaz.html" class="logo">
-                <img src="../public/images/logo.jpg" alt="Logo" />
+            <a href="/home" class="logo">
+                <img src="/public/images/logo.jpg" alt="Logo" />
             </a>
             <div class="search-box">
-                <img src="../public/images/search.png" alt="Buscar" />
+                <img src="/public/images/search.png" alt="Buscar" />
                 <input type="text" placeholder="Búsqueda" />
             </div>
         </div>
@@ -26,19 +26,20 @@
             <ul>
                 <li>
                     <a href="#" class="active-link">
-                        <img src="../public/images/jobs.png" alt="Empleos" />
+                        <img src="/public/images/jobs.png" alt="Empleos" />
                         <span>Empleos</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
-                        <img src="../public/images/message.png" alt="Mensajes" />
-                        <span>Mensajes</span>
-                    </a>
+                    <a href="#" id="open-amigos-modal">
+                        <img src="/public/images/network.png" alt="amigos" />
+                        <span>Amigos</span>
+                      </a>
+                      
                 </li>
                 <li id="notifications-toggle">
                     <a href="#">
-                        <img src="../public/images/notification.png" alt="Notificaciones">
+                        <img src="/public/images/notification.png" alt="Notificaciones">
                         <span>Notificaciones</span>
                     </a>
                     
@@ -70,13 +71,11 @@
             </ul>
         </div>
         <div class="nav-profile">
-            <img src="../public/images/Secciones.jpeg" class="nav-profile-img" alt="Perfil" onclick="profileDropdown()"/>
+            <img src="/public/images/Secciones.jpeg" class="nav-profile-img" alt="Perfil" onclick="profileDropdown()"/>
             <div class="profile-dropdown" id="menuPerfil">
                 <div class="radio-btn" onclick="toggleDarkMode()">
                     <div class="radio-inner"></div>
-                </div>
-                <a href=".perfil.html"><i class='bx bxs-user'></i> Mi Perfil</a>
-                <a href="/configuracion"><i class='bx bxs-cog'></i> Configuración</a>
+                </div> 
                 <a href="#" id="logoutBtn"><i class='bx bxs-log-out'></i> Cerrar Sesión</a>
             </div>
         </div>
@@ -94,15 +93,15 @@
 </div>
   <div class="profile-section">
     <div class="profile-pic" onclick="openPopup('profile')">
-        <img id="profile-img" src="../public/images/Secciones.jpeg" alt="Profile Picture">
+        <img id="profile-img" src="/public/images/Secciones.jpeg" alt="Profile Picture">
     </div>
     <button class="edit-pencil" onclick="toggleEditPopup()">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="15" height="15">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4H6a2 2 0 00-2 2v12a2 2 2 0 002 2h12a2 2 0 002-2v-5M18.5 2.5a2.121 2.121 0 113 3L12 15l-4 1 1-4 9.5-9.5z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4H6a2 2 0 00-2 2v12a2 2 2 0 002 2h12a2 2 2 0 002-2v-5M18.5 2.5a2.121 2.121 0 113 3L12 15l-4 1 1-4 9.5-9.5z" />
           </svg>
     </button>
-    <h1 class="profile-name">Olvin Miguelp</h1>
-    <p class="profile-headline">Programador</p>
+    <h1 class="profile-name">Colocar tu Suarios</h1>
+    <p class="profile-headline">Colocar tu profecion</p>
       
       <!-- Intereses del perfil -->
       
@@ -138,7 +137,7 @@
                         <div class="about-content" id="aboutContent">
                             <p class="about-text" id="aboutText">Algo sobre mi</p>
                             <button class="edit-btn" onclick="showEdit()">    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="15" height="15">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4H6a2 2 0 00-2 2v12a2 2 2 0 002 2h12a2 2 0 002-2v-5M18.5 2.5a2.121 2.121 0 113 3L12 15l-4 1 1-4 9.5-9.5z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4H6a2 2 0 00-2 2v12a2 2 2 0 002 2h12a2 2 2 0 002-2v-5M18.5 2.5a2.121 2.121 0 113 3L12 15l-4 1 1-4 9.5-9.5z" />
                               </svg></button>
                         </div>
                         <div class="edit-container" id="editContainer">
@@ -156,7 +155,7 @@
 <form class="experienceForm">
     <h2 class="section-title">Experiencia</h2>
     <div class="profile-desc-row">  
-        <div id="experienceSectionDisplay"></div>
+        <div id="experienceSectionDisplay" class="experience-list"></div>
     </div>
 </form>
 
@@ -164,20 +163,20 @@
 <form class="educationForm">
     <h2 class="section-title">Educación</h2>
     <div class="profile-desc-row">
-        <div id="educationSectionDisplay"></div>
+        <div id="educationSectionDisplay" class="education-list"></div>
     </div>
 </form>
 
 <!-- Formulario de Habilidades -->
 <form class="skillsForm">
     <h2 class="section-title">Habilidades</h2>
-    <div id="skillsSectionDisplay"></div>
+    <div id="skillsSectionDisplay" class="skills-list"></div>
 </form>
 
 <!-- Formulario de Idiomas -->
 <form class="languagesForm">
     <h2 class="section-title">Idiomas</h2>
-    <div id="languagesSectionDisplay"></div>
+    <div id="languagesSectionDisplay" class="languages-list"></div>
 </form>
 
         <!-- Barra lateral con anuncios y sugerencias -->
@@ -290,10 +289,10 @@
     </div>
    <!-- Botón flotante para abrir el diálogo de "Nuevo mensaje" -->
    <div class="fixed-container">
-    <button id="compose-btn" class="compose-btn" title="Nuevo mensaje">
+    <button id="compose-btn" class="compose-btn" title="Nuevo mensaje" onclick="document.getElementById('compose-modal').classList.remove('hidden')">
       <!-- Ícono de editar (lápiz) en SVG -->
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4H6a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2v-5M18.5 2.5a2.121 2.121 0 113 3L12 15l-4 1 1-4 9.5-9.5z" />
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4H6a2 2 0 00-2 2v12a2 2 2 0 002 2h12a2 2 2 0 002-2v-5M18.5 2.5a2.121 2.121 0 113 3L12 15l-4 1 1-4 9.5-9.5z" />
       </svg>
     </button>
   </div>
@@ -367,11 +366,22 @@
       </div>
     </div>
   </div>
-  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
-  <script src="https://unpkg.com/lucide@latest"></script>
-    <script src="../public/js/perfil.js"></script>
-    <script src="../public/js/app.js"></script>
+  
+  <div id="amigos-modal" class="amigos-modal hidden"> 
+    <div class="amigos-modal-content">
+      <div class="amigos-modal-header">
+        <h2>Amigos Creados</h2>
+        <button id="close-amigos-modal-btn" class="close-btn">&times;</button>
+      </div>
+      <div class="amigos-modal-body">
+        <div id="amigos-container" class="amigos-container">
+          <!-- Se inyectarán los amigos creados mediante JavaScript -->
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+    <script src="/public/js/perfil.js"></script>
 </body>
 </html>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="../public/css/register.css">
+    <link rel="stylesheet" href="/public/css/register.css">
     <title>JobLink - Registro</title>
 </head>
 <body>
@@ -14,15 +14,15 @@
 
     <nav class="navbar">
         <div class="navbar-left">
-            <a href="/" class="logo">
-                <img src="../public/images/logo.jpg" alt="Logo" />
+            <a href="/interfaz" class="logo">
+                <img src="/public/images/logo.jpg" alt="Logo" />
             </a>
         </div>
         <div class="navbar-center">
             <ul>
                 <li>
                     <a href="#">
-                        <img src="../public/images/message.png" alt="Mensajes" />
+                        <img src="/public/images/message.png" alt="Mensajes" />
                         <span>ayuda</span>
                     </a>
                 </li>
@@ -33,7 +33,7 @@
     <div class="wrapper">
         <div class="form-box register">
             <h2>Registro</h2>
-            <form id="registerForm" method="POST">
+            <form id="registerForm" action="/auth/register" method="POST">
                 <div class="input-box">
                     <input type="text" id="registerName" name="name" required>
                     <label>Nombre completo</label>
@@ -64,9 +64,10 @@
                     </label>
                 </div>
 
+                <!-- Botón corregido para enviar el formulario -->
                 <button class="btn" type="submit">Registrarse</button>
                 <div class="logreg-link">
-                    <p>¿Ya tienes una cuenta? <br> <a href="../views/login.html" class="login-link">Iniciar sesión</a></p>
+                    <p>¿Ya tienes una cuenta? <br> <a href="/login" class="login-link">Iniciar sesión</a></p>
                 </div>
             </form>
         </div>
@@ -82,6 +83,6 @@
         </div>
     </div>
 
-    <script src="../public/js/register.js"></script>
+    <script src="/public/js/register.js"></script>
 </body>
 </html>

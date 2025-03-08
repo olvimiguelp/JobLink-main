@@ -1,121 +1,91 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const loginForm = document.getElementById('loginForm');
-    const registerForm = document.getElementById('registerForm');
-    const messageDiv = document.getElementById('message');
+document.addEventListener("DOMContentLoaded", () => {
+  const loginForm = document.getElementById("loginForm");
+  const messageDiv = document.getElementById("message");
 
-    // Función para mostrar mensajes
-    const showMessage = (message, isError = false) => {
-        messageDiv.textContent = message;
-        messageDiv.className = `message ${isError ? 'error-message' : 'success-message'} show`;
-        
-        // Remover clases después del tiempo
+  loginForm.addEventListener("submit", async (e) => {
+    e.preventDefault(); // Evita la recarga del formulario
+
+    const email = document.getElementById("loginEmail").value.trim();
+    const password = document.getElementById("loginPassword").value.trim();
+
+    // Validación básica
+    if (!email || !password) {
+      showMessage("Por favor, complete todos los campos.", "error");
+      return;
+    }
+
+    try {
+      const response = await fetch("/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Error en la solicitud");
+      }
+
+      const data = await response.json();
+
+      if (data.success) {
+        showMessage("Inicio de sesión exitoso. Redirigiendo...", "success");
+
+        // Redirigir después de 1 segundo
         setTimeout(() => {
-            messageDiv.classList.remove('show');
-            messageDiv.classList.remove(isError ? 'error-message' : 'success-message');
-        }, 3000);
-    };
+          window.location.href = "/home";
+        }, 1000);
+      } else {
+        showMessage(data.message || "Credenciales inválidas", "error");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      showMessage("Error de conexión. Intente nuevamente.", "error");
+    }
+  });
 
-    // Manejar el envío del formulario de login
-    loginForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        
-        const email = document.getElementById('loginEmail').value;
-        const password = document.getElementById('loginPassword').value;
+  // Función para mostrar mensajes
+  function showMessage(message, type) {
+    console.log(`Mostrando mensaje: ${message} (${type})`); // Debugging
+    const popup = document.createElement("div");
+    popup.className = `popup-message ${type}`;
+    popup.textContent = message;
+    document.body.appendChild(popup);
+  
+    setTimeout(() => {
+      popup.classList.add("fade-out");
+      setTimeout(() => {
+        popup.remove();
+      }, 1000);
+    }, 5000);
+  }
 
-        try {
-            const response = await fetch('/auth/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ email, password })
-            });
-
-            const data = await response.json();
-
-            if (response.ok) {
-                showMessage('Login exitoso, redirigiendo...');
-                setTimeout(() => {
-                    window.location.href = '/interfaz';
-                }, 1500);
-            } else {
-                showMessage(data.message || 'Error en el login', true);
-            }
-        } catch (error) {
-            showMessage('Error al conectar con el servidor', true);
-        }
-    });
-
-    // Manejar el envío del formulario de registro
-    registerForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        
-        const name = document.getElementById('registerName').value;
-        const email = document.getElementById('registerEmail').value;
-        const password = document.getElementById('registerPassword').value;
-        const confirmPassword = document.getElementById('confirmPassword').value;
-
-        // Validaciones básicas
-        if (password !== confirmPassword) {
-            showMessage('Las contraseñas no coinciden', true);
-            return;
-        }
-
-        if (password.length < 6) {
-            showMessage('La contraseña debe tener al menos 6 caracteres', true);
-            return;
-        }
-
-        try {
-            const response = await fetch('/auth/register', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ name, email, password })
-            });
-
-            const data = await response.json();
-
-            if (response.ok) {
-                showMessage('Registro exitoso, redirigiendo...');
-                // Iniciar sesión automáticamente después del registro
-                const loginResponse = await fetch('/auth/login', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ email, password })
-                });
-
-                if (loginResponse.ok) {
-                    setTimeout(() => {
-                        window.location.href = '/interfaz';
-                    }, 1500);
-                } else {
-                    showMessage('Registro exitoso. Por favor, inicia sesión.', true);
-                    setTimeout(() => {
-                        window.location.href = '/';
-                    }, 1500);
-                }
-            } else {
-                showMessage(data.message || 'Error en el registro', true);
-            }
-        } catch (error) {
-            showMessage('Error al conectar con el servidor', true);
-        }
-    });
-
-    // Alternar entre formularios
-    document.getElementById('showRegister').addEventListener('click', (e) => {
-        e.preventDefault();
-        document.querySelector('.login-form').style.display = 'none';
-        document.querySelector('.register-form').style.display = 'block';
-    });
-
-    document.getElementById('showLogin').addEventListener('click', (e) => {
-        e.preventDefault();
-        document.querySelector('.login-form').style.display = 'block';
-        document.querySelector('.register-form').style.display = 'none';
-    });
+  // Estilos para el popup
+  const style = document.createElement("style");
+  style.textContent = `
+    .popup-message {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 15px 20px;
+      border-radius: 5px;
+      color: white;
+      font-size: 16px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      transition: opacity 0.5s ease-in-out;
+    }
+    .success {
+      background-color: #28a745;
+    }
+    .error {
+      background-color: #dc3545;
+    }
+    .fade-out {
+      opacity: 0;
+    }
+  `;
+  document.head.appendChild(style);
 });
