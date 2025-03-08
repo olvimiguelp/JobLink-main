@@ -95,6 +95,16 @@ CREATE TABLE idiomas_usuario (
   CONSTRAINT fk_idiomas_usuario FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE CASCADE
 );
 
+CREATE TABLE historial_busquedas (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  usuario_buscador_id INT NOT NULL,
+  usuario_buscado_id INT NOT NULL,
+  termino_busqueda VARCHAR(255) NOT NULL,
+  fecha_busqueda TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (usuario_buscador_id) REFERENCES usuarios(id),
+  FOREIGN KEY (usuario_buscado_id) REFERENCES usuarios(id)
+);
+
 CREATE TABLE mensajes (
   id INT AUTO_INCREMENT PRIMARY KEY,
   remitente_id INT NOT NULL,
@@ -106,4 +116,26 @@ CREATE TABLE mensajes (
   CONSTRAINT fk_mensajes_destinatario FOREIGN KEY (destinatario_id) REFERENCES usuarios(id) ON DELETE CASCADE
 );
 
+-- Tabla para solicitudes de amistad
+CREATE TABLE solicitudes_amistad (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  remitente_id INT NOT NULL,
+  receptor_id INT NOT NULL,
+  estado ENUM('pendiente', 'aceptada', 'rechazada') DEFAULT 'pendiente',
+  creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  actualizado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  CONSTRAINT fk_solicitud_remitente FOREIGN KEY (remitente_id) REFERENCES usuarios(id) ON DELETE CASCADE,
+  CONSTRAINT fk_solicitud_receptor FOREIGN KEY (receptor_id) REFERENCES usuarios(id) ON DELETE CASCADE,
+  CONSTRAINT unique_friendship UNIQUE (remitente_id, receptor_id)
+);
 
+-- Tabla para amigos/conexiones
+CREATE TABLE amigos (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  usuario_id INT NOT NULL,
+  amigo_id INT NOT NULL,
+  creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  CONSTRAINT fk_amigos_usuario FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE CASCADE,
+  CONSTRAINT fk_amigos_amigo FOREIGN KEY (amigo_id) REFERENCES usuarios(id) ON DELETE CASCADE,
+  CONSTRAINT unique_friendship_pair UNIQUE (usuario_id, amigo_id)
+);
